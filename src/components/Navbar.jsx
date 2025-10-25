@@ -12,13 +12,14 @@ import {
   Globe,
   LogIn
 } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('EN');
   const location = useLocation();
+  const { language, changeLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,13 +30,18 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { path: '/', label: 'Home', icon: Gamepad2 },
-    { path: '/tournaments', label: 'Tournaments', icon: Trophy },
-    { path: '/leaderboard', label: 'Leaderboard', icon: Medal },
-    { path: '/profile', label: 'Profile', icon: User }
+    { path: '/', label: t('navbar.home'), icon: Gamepad2 },
+    { path: '/tournaments', label: t('navbar.tournaments'), icon: Trophy },
+    { path: '/leaderboard', label: t('navbar.leaderboard'), icon: Medal },
+    { path: '/profile', label: t('navbar.profile'), icon: User }
   ];
 
-  const languages = ['EN', 'فا', 'العربية', 'TR'];
+  const languages = [
+    { code: 'en', label: 'EN' },
+    { code: 'fa', label: 'فا' },
+    { code: 'ar', label: 'العربية' },
+    { code: 'tr', label: 'TR' }
+  ];
 
   return (
     <>
@@ -95,12 +101,12 @@ const Navbar = () => {
             <div className="language-selector">
               <Globe size={18} />
               <select
-                value={selectedLanguage}
-                onChange={(e) => setSelectedLanguage(e.target.value)}
+                value={language}
+                onChange={(e) => changeLanguage(e.target.value)}
                 className="language-dropdown"
               >
                 {languages.map(lang => (
-                  <option key={lang} value={lang}>{lang}</option>
+                  <option key={lang.code} value={lang.code}>{lang.label}</option>
                 ))}
               </select>
             </div>
@@ -111,7 +117,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
             >
               <LogIn size={18} />
-              <span>Login</span>
+              <span>{t('navbar.login')}</span>
             </motion.button>
 
             <button
@@ -157,7 +163,7 @@ const Navbar = () => {
 
                 <button className="mobile-login-btn">
                   <LogIn size={20} />
-                  <span>Login / Register</span>
+                  <span>{t('navbar.login')}</span>
                 </button>
               </div>
             </div>

@@ -94,3 +94,28 @@ input, textarea, select {
   transform: translateY(-5px);
   box-shadow: var(--shadow-strong);
 }
+
+[dir='rtl'] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir='rtl'] body {
+  font-family: 'Rajdhani', 'Vazirmatn', 'Tahoma', sans-serif;
+}
+
+[dir='rtl'] .hero-buttons,
+[dir='rtl'] .cta-buttons {
+  flex-direction: row-reverse;
+}
+
+[dir='rtl'] .card-hover:hover {
+  transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+  [dir='rtl'] .hero-buttons,
+  [dir='rtl'] .cta-buttons {
+    flex-direction: column-reverse;
+  }
+}

@@ -14,13 +14,11 @@ import {
   Play,
   Star
 } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
 import Navbar from '../components/Navbar';
 import '../styles/HomePage.css';
 
 const HomePage = () => {
   const [activeGameIndex, setActiveGameIndex] = useState(0);
-  const { t } = useLanguage();
 
   const featuredGames = [
     { name: 'FIFA 24', players: '2.5K+', prize: '$50,000' },
@@ -39,7 +37,7 @@ const HomePage = () => {
       players: 2547,
       maxPlayers: 3000,
       entry: '$25',
-      status: t('home.open')
+      status: 'Open'
     },
     {
       id: 2,
@@ -50,7 +48,7 @@ const HomePage = () => {
       players: 3104,
       maxPlayers: 5000,
       entry: '$35',
-      status: t('home.open')
+      status: 'Open'
     },
     {
       id: 3,
@@ -61,7 +59,7 @@ const HomePage = () => {
       players: 1876,
       maxPlayers: 2500,
       entry: '$20',
-      status: t('home.open')
+      status: 'Open'
     }
   ];
 
@@ -74,10 +72,10 @@ const HomePage = () => {
   ];
 
   const stats = [
-    { icon: Users, value: '25K+', label: t('home.activePlayers') },
-    { icon: Trophy, value: '1,200+', label: t('home.tournaments') },
-    { icon: DollarSign, value: '$2.5M', label: t('home.prizePool') },
-    { icon: Crown, value: '500+', label: t('home.champions') }
+    { icon: Users, value: '25K+', label: 'Active Players' },
+    { icon: Trophy, value: '1,200+', label: 'Tournaments' },
+    { icon: DollarSign, value: '$2.5M', label: 'Prize Pool' },
+    { icon: Crown, value: '500+', label: 'Champions' }
   ];
 
   useEffect(() => {
@@ -107,7 +105,7 @@ const HomePage = () => {
             transition={{ duration: 0.8 }}
           >
             <Zap size={16} />
-            <span>{t('home.badge')}</span>
+            <span>World's Premier PS5 Tournament Platform</span>
           </motion.div>
 
           <motion.h1
@@ -116,9 +114,9 @@ const HomePage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {t('home.title1')}
+            Compete. Conquer.
             <br />
-            <span className="text-gradient glow">{t('home.title2')}</span>
+            <span className="text-gradient glow">Claim Glory.</span>
           </motion.h1>
 
           <motion.p
@@ -127,9 +125,9 @@ const HomePage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {t('home.description1')}
+            Join thousands of elite gamers in high-stakes PS5 tournaments.
             <br />
-            {t('home.description2')}
+            Compete globally, win massive prizes, and build your legacy.
           </motion.p>
 
           <motion.div
@@ -140,12 +138,12 @@ const HomePage = () => {
           >
             <Link to="/tournaments" className="btn-primary">
               <Trophy size={20} />
-              <span>{t('home.browseTournaments')}</span>
+              <span>Browse Tournaments</span>
               <ChevronRight size={20} />
             </Link>
             <button className="btn-secondary">
               <Play size={20} />
-              <span>{t('home.watchLive')}</span>
+              <span>Watch Live</span>
             </button>
           </motion.div>
 
@@ -183,8 +181,8 @@ const HomePage = () => {
       <section className="featured-games">
         <div className="section-container">
           <div className="section-header">
-            <h2 className="section-title">{t('home.featuredGames')}</h2>
-            <p className="section-subtitle">{t('home.featuredGamesSubtitle')}</p>
+            <h2 className="section-title">Featured Games</h2>
+            <p className="section-subtitle">Top competitive titles this season</p>
           </div>
 
           <div className="games-grid">
@@ -204,14 +202,14 @@ const HomePage = () => {
                   </div>
                   <div className="game-status">
                     <span className="status-dot"></span>
-                    {t('home.live')}
+                    LIVE
                   </div>
                 </div>
                 <h3 className="game-name">{game.name}</h3>
                 <div className="game-stats">
                   <div className="game-stat">
                     <Users size={16} />
-                    <span>{game.players} {t('home.players')}</span>
+                    <span>{game.players} Players</span>
                   </div>
                   <div className="game-stat prize">
                     <Trophy size={16} />
@@ -219,7 +217,7 @@ const HomePage = () => {
                   </div>
                 </div>
                 <button className="game-action-btn">
-                  {t('home.joinTournament')}
+                  Join Tournament
                   <ChevronRight size={18} />
                 </button>
               </motion.div>
@@ -231,10 +229,10 @@ const HomePage = () => {
       <section className="tournaments-section">
         <div className="section-container">
           <div className="section-header">
-            <h2 className="section-title">{t('home.upcomingTournaments')}</h2>
-            <p className="section-subtitle">{t('home.upcomingSubtitle')}</p>
+            <h2 className="section-title">Upcoming Tournaments</h2>
+            <p className="section-subtitle">Register now and secure your spot</p>
             <Link to="/tournaments" className="view-all-link">
-              {t('home.viewAll')} <ChevronRight size={18} />
+              View All <ChevronRight size={18} />
             </Link>
           </div>
 
@@ -277,16 +275,16 @@ const HomePage = () => {
                     ></div>
                   </div>
                   <span className="progress-text">
-                    {Math.round((tournament.players / tournament.maxPlayers) * 100)}% {t('home.full')}
+                    {Math.round((tournament.players / tournament.maxPlayers) * 100)}% Full
                   </span>
                 </div>
 
                 <div className="tournament-footer">
                   <div className="entry-fee">
-                    {t('home.entry')}: <span>{tournament.entry}</span>
+                    Entry: <span>{tournament.entry}</span>
                   </div>
                   <button className="join-btn">
-                    {t('home.joinNow')}
+                    Join Now
                     <ChevronRight size={16} />
                   </button>
                 </div>
@@ -299,10 +297,10 @@ const HomePage = () => {
       <section className="leaderboard-section">
         <div className="section-container">
           <div className="section-header">
-            <h2 className="section-title">{t('home.topChampions')}</h2>
-            <p className="section-subtitle">{t('home.topChampionsSubtitle')}</p>
+            <h2 className="section-title">Top Champions</h2>
+            <p className="section-subtitle">This season's elite performers</p>
             <Link to="/leaderboard" className="view-all-link">
-              {t('home.fullLeaderboard')} <ChevronRight size={18} />
+              Full Leaderboard <ChevronRight size={18} />
             </Link>
           </div>
 
@@ -327,7 +325,7 @@ const HomePage = () => {
                 <div className="player-avatar">{player.avatar}</div>
                 <div className="player-info">
                   <div className="player-name">{player.name}</div>
-                  <div className="player-wins">{player.wins} {t('home.wins')}</div>
+                  <div className="player-wins">{player.wins} Wins</div>
                 </div>
                 <div className="player-earnings">{player.earnings}</div>
                 <TrendingUp size={20} className="trend-icon" />
@@ -346,16 +344,18 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="cta-title">{t('home.ctaTitle')}</h2>
-            <p className="cta-description">{t('home.ctaDescription')}</p>
+            <h2 className="cta-title">Ready to Become a Champion?</h2>
+            <p className="cta-description">
+              Join the ultimate PS5 gaming arena. Register now and start your journey to glory.
+            </p>
             <div className="cta-buttons">
               <button className="btn-primary large">
                 <Trophy size={24} />
-                <span>{t('home.createAccount')}</span>
+                <span>Create Account</span>
               </button>
               <button className="btn-secondary large">
                 <Gamepad2 size={24} />
-                <span>{t('home.learnMore')}</span>
+                <span>Learn More</span>
               </button>
             </div>
           </motion.div>
@@ -369,31 +369,31 @@ const HomePage = () => {
               <Gamepad2 size={32} />
               <span>PS5 ARENA</span>
             </div>
-            <p>{t('home.footerDescription')}</p>
+            <p>The world's premier PlayStation 5 tournament platform.</p>
           </div>
           <div className="footer-section">
-            <h4>{t('home.platform')}</h4>
-            <a href="#">{t('home.tournaments')}</a>
-            <a href="#">{t('home.fullLeaderboard')}</a>
-            <a href="#">{t('home.liveStreams')}</a>
-            <a href="#">{t('home.prizePool')}</a>
+            <h4>Platform</h4>
+            <a href="#">Tournaments</a>
+            <a href="#">Leaderboard</a>
+            <a href="#">Live Streams</a>
+            <a href="#">Prize Pool</a>
           </div>
           <div className="footer-section">
-            <h4>{t('home.support')}</h4>
-            <a href="#">{t('home.helpCenter')}</a>
-            <a href="#">{t('home.rules')}</a>
-            <a href="#">{t('home.faq')}</a>
-            <a href="#">{t('home.contact')}</a>
+            <h4>Support</h4>
+            <a href="#">Help Center</a>
+            <a href="#">Rules</a>
+            <a href="#">FAQ</a>
+            <a href="#">Contact</a>
           </div>
           <div className="footer-section">
-            <h4>{t('home.legal')}</h4>
-            <a href="#">{t('home.terms')}</a>
-            <a href="#">{t('home.privacy')}</a>
-            <a href="#">{t('home.cookies')}</a>
+            <h4>Legal</h4>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
           </div>
         </div>
         <div className="footer-bottom">
-          <p>{t('home.copyright')}</p>
+          <p>&copy; 2025 PS5 Arena. All rights reserved.</p>
         </div>
       </footer>
     </div>
