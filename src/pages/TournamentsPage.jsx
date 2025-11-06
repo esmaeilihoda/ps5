@@ -10,24 +10,29 @@ import {
   Clock,
   Target,
   Zap,
-  Star
+  Star,
+  Loader
 } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useTournaments } from '../hooks/useTournaments';
 import Navbar from '../components/Navbar';
 import '../styles/TournamentsPage.css';
 
 const TournamentsPage = () => {
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useLanguage();
+  const { tournaments: apiTournaments, loading, error } = useTournaments();
 
   const filters = [
-    { id: 'all', label: 'All Tournaments' },
-    { id: 'open', label: 'Open' },
-    { id: 'upcoming', label: 'Upcoming' },
-    { id: 'live', label: 'Live' },
-    { id: 'completed', label: 'Completed' }
+    { id: 'all', label: t('tournaments.all') },
+    { id: 'open', label: t('tournaments.open') },
+    { id: 'upcoming', label: t('tournaments.upcoming') },
+    { id: 'live', label: t('tournaments.live') },
+    { id: 'completed', label: t('tournaments.completed') }
   ];
 
-  const tournaments = [
+  const tournaments = apiTournaments.length > 0 ? apiTournaments : [
     {
       id: 1,
       game: 'FIFA 24 Champions League',
@@ -40,71 +45,6 @@ const TournamentsPage = () => {
       entry: '$25',
       tier: 'Premium',
       region: 'Global'
-    },
-    {
-      id: 2,
-      game: 'Warzone Battle Royale',
-      status: 'live',
-      date: 'Oct 20, 2025',
-      time: '20:00 UTC',
-      prize: '$75,000',
-      players: 4876,
-      maxPlayers: 5000,
-      entry: '$35',
-      tier: 'Elite',
-      region: 'Global'
-    },
-    {
-      id: 3,
-      game: 'NBA 2K Pro League',
-      status: 'upcoming',
-      date: 'Nov 2, 2025',
-      time: '19:00 UTC',
-      prize: '$35,000',
-      players: 1876,
-      maxPlayers: 2500,
-      entry: '$20',
-      tier: 'Standard',
-      region: 'NA/EU'
-    },
-    {
-      id: 4,
-      game: 'Mortal Kombat Tournament',
-      status: 'open',
-      date: 'Oct 28, 2025',
-      time: '21:00 UTC',
-      prize: '$25,000',
-      players: 987,
-      maxPlayers: 1500,
-      entry: '$15',
-      tier: 'Standard',
-      region: 'Global'
-    },
-    {
-      id: 5,
-      game: 'Gran Turismo Championship',
-      status: 'upcoming',
-      date: 'Nov 5, 2025',
-      time: '17:00 UTC',
-      prize: '$40,000',
-      players: 1543,
-      maxPlayers: 2000,
-      entry: '$30',
-      tier: 'Premium',
-      region: 'Global'
-    },
-    {
-      id: 6,
-      game: 'Street Fighter Masters',
-      status: 'open',
-      date: 'Oct 30, 2025',
-      time: '22:00 UTC',
-      prize: '$30,000',
-      players: 1234,
-      maxPlayers: 2000,
-      entry: '$25',
-      tier: 'Premium',
-      region: 'Asia/Pacific'
     }
   ];
 

@@ -10,20 +10,24 @@ import {
   Award,
   Medal
 } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
+import { useLeaderboard } from '../hooks/useLeaderboard';
 import Navbar from '../components/Navbar';
 import '../styles/LeaderboardPage.css';
 
 const LeaderboardPage = () => {
   const [selectedPeriod, setSelectedPeriod] = useState('monthly');
+  const { t } = useLanguage();
+  const { players: apiPlayers, loading, error } = useLeaderboard();
 
   const periods = [
-    { id: 'daily', label: 'Daily' },
-    { id: 'weekly', label: 'Weekly' },
-    { id: 'monthly', label: 'Monthly' },
-    { id: 'alltime', label: 'All Time' }
+    { id: 'daily', label: t('leaderboard.daily') },
+    { id: 'weekly', label: t('leaderboard.weekly') },
+    { id: 'monthly', label: t('leaderboard.monthly') },
+    { id: 'alltime', label: t('leaderboard.allTime') }
   ];
 
-  const leaderboardData = [
+  const leaderboardData = apiPlayers.length > 0 ? apiPlayers : [
     {
       rank: 1,
       prevRank: 2,
